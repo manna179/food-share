@@ -1,16 +1,15 @@
-
 import { useContext, useState } from "react";
 
 import AuthContext from "../providers/AuthContext";
-import { Link } from "react-router-dom";
-
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
-  const [error,setError]=useState('')
-  const {setUser,createUser}=useContext(AuthContext)
-  
+  const navigate = useNavigate()
+  const [error, setError] = useState("");
+  const { setUser, createUser } = useContext(AuthContext);
 
-  const handleRegisterSubmit = (e) => {
+  const handleRegisterSubmit =async (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
@@ -31,12 +30,20 @@ const Register = () => {
     //   setError("password should be 6 character");
     //   return;
     // }
-    createUser(email,password)
-    .then(res=>setUser(res.user))
-    .catch(err =>{
+    createUser(email, password)
+      .then((res) => {
+        setUser(res.user),
+          updateProfile(res.user, {
+            displayName: name,
+            photoURL: photo,
+          }).then(()=>{
+            navigate('/')
+          })
+
+      })
+      .catch((err) => {
         console.log(err.message);
-    })
-    
+      });
   };
 
   return (
@@ -109,17 +116,17 @@ const Register = () => {
               <button className="btn btn-primary">Register</button>
             </div>
 
-            <div>Already have an account? <Link to='/login' className="btn btn-link">Login</Link></div>
+            <div>
+              Already have an account?{" "}
+              <Link to="/login" className="btn btn-link">
+                Login
+              </Link>
+            </div>
           </form>
-          
         </div>
       </div>
 
-     <div>
-     {
-            error&& <p className="text-red-500">{error.message}</p>
-          }
-     </div>
+      <div>{error && <p className="text-red-500">{error.message}</p>}</div>
     </div>
   );
 };

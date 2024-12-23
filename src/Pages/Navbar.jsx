@@ -14,21 +14,19 @@ const Navbar = () => {
       <div className="flex-none">
         <div className="flex mr-8 list-none gap-2 ">
           <li>
-            <NavLink to="/"> Home</NavLink>
+            <NavLink to="/" className='btn'> Home</NavLink>
           </li>
           <li>
-            <NavLink to="/availableFoods">Available Foods</NavLink>
+            <NavLink to="/availableFoods"  className='btn'>Available Foods</NavLink>
           </li>
         </div>
         <div className="flex list-none">
         
-          <li>
+          <div>
             {user ? (
               <>
                <div className="flex justify-center items-center">
-               <h2 className="mr-8" onClick={signOutUser}>
-                  logout
-                </h2>
+               <h2 className="mr-8 btn " onClick={signOutUser}>logout</h2>
                 <div className="dropdown dropdown-end">
                   <div
                     tabIndex={0}
@@ -72,7 +70,7 @@ const Navbar = () => {
                 </li></div>
               </>
             )}
-          </li>
+          </div>
         </div>
       </div>
     </div>

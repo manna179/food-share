@@ -7,40 +7,52 @@ import MyFoodRequest from "../FoodRoutes/MyFoodRequest";
 import ManageFood from "../FoodRoutes/ManageFood";
 import AddsFood from "../FoodRoutes/AddsFood";
 import AvailableFoods from "../FoodRoutes/AvailableFoods";
+import FoodDetails from "../FoodRoutes/FoodDetails";
+import PrivateRoute from "./PrivateRoute";
+import ErrorPage from "../Pages/ErrorPage";
 const router = createBrowserRouter([
   {
     path: "/",
+    errorElement: <ErrorPage></ErrorPage>,
     element: <MainLayout></MainLayout>,
-    children:[
-        {
-            index:true,
-            element:<Home></Home>
-        },
-        {
-            path:'/login',
-            element:<Login></Login>
-        },
-        {
-            path:'/register',
-            element:<Register></Register>
-        },
-        {
-            path:'/addsFood',
-            element:<AddsFood></AddsFood>
-        },
-        {
-            path:'/myFoodRequest',
-            element:<MyFoodRequest></MyFoodRequest>
-        },
-        {
-            path:'/manageFood',
-            element:<ManageFood></ManageFood>
-        },
-        {
-            path:'/availableFoods',
-            element:<AvailableFoods></AvailableFoods>
-        }
-    ]
+    children: [
+      {
+        index: true,
+        element: <Home></Home>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "/addsFood",
+        element: <AddsFood></AddsFood>,
+      },
+      {
+        path: "/myFoodRequest",
+        element: <MyFoodRequest></MyFoodRequest>,
+      },
+      {
+        path: "/manageFood",
+        element: <ManageFood></ManageFood>,
+      },
+      {
+        path: "/availableFoods",
+        element: <AvailableFoods></AvailableFoods>,
+      },
+      {
+        path: "/foods/:id",
+        element: (
+          <PrivateRoute>
+            <FoodDetails></FoodDetails>
+          </PrivateRoute>
+        ),
+      },
+    ],
   },
 ]);
 

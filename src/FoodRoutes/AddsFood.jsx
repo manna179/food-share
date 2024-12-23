@@ -1,7 +1,9 @@
 import { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import AuthContext from "../providers/AuthContext";
+import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
+import { use } from "react";
 
 const AddsFood = () => {
   const { user } = useContext(AuthContext);
@@ -18,20 +20,11 @@ const AddsFood = () => {
     const foodQuantity = form.food_quantity.value;
     const status = foodStatus;
     const additionalNotes = form.description.value;
-    const name = user?.name;
-    const image = user?.photoUrl;
+    const name = user?.displayName;
+    console.log(user.name);
+    const image = user?.photoURL;
     const email = user?.email;
-    console.log(
-      foodName,
-      foodImage,
-      expiredDate,
-      foodQuantity,
-      status,
-      additionalNotes,
-      name,
-      image,
-      email
-    );
+    
     const newfood = {
       foodName,
       foodImage,
@@ -49,6 +42,7 @@ const AddsFood = () => {
       .then((res) => {
         console.log("inserted data to db", res);
       });
+      console.log(data);
   };
 
   return (
@@ -107,6 +101,7 @@ const AddsFood = () => {
             </div>
 
             {/* location */}
+
             {/* food status */}
             <div>
               <label className="text-gray-700 " htmlFor="food_status">

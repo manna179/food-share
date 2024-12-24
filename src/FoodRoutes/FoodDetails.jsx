@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AuthContext from "../providers/AuthContext";
 
 const FoodDetails = () => {
+  const navigate = useNavigate()
     const {user}=useContext(AuthContext)
   const [food, setFood] = useState({});
   const [note,setNote]=useState('')
@@ -19,7 +20,16 @@ const FoodDetails = () => {
   }, []);
 
   const update =async ()=>{
-    const {data}=await axios.put(`http://localhost:5000/foods/${id}`,{status:'requested', additionalNotes:note})
+const payload = {
+  status:'requested',
+   additionalNotes:note,
+   quantity:food.foodQuantity
+
+}
+
+    const {data}=await axios.put(`http://localhost:5000/foods/${id}`,payload)
+    
+  navigate('/myFoodRequest')
     console.log(data);
     
     return 
@@ -65,17 +75,15 @@ console.log(food);
         <p>Donator Name: {food.name}</p>
         <p>Food Status : {food.status}</p>
         <p>Comment:{food.additionalNotes}</p>
+        <label className="block mt-3" htmlFor="Note">Additional Note:</label>
+        <input type="text" className="border border-gray-300 px-2 py-1  rounded-md" value={note} onChange={(e)=>setNote(e.target.value)}/>
           </div>
               <div className="modal-action ">
                 <form method="dialog">
-                    <input type="text"value={food.foodName} readOnly />
-                    <input type="text"value={food.foodQuantity} readOnly />
-                    <input type="text"value={food.expiredDate} readOnly />
-                    <input type="text"value={food.name} readOnly />
-                    <input type="text"value={food.status} readOnly />
-                    <input type="text"value={food.additionalNotes}  />
+                    
+                   
 
-                    <input type="text" value={note} onChange={(e)=>setNote(e.target.value)}/>
+                    
                   {/* if there is a button, it will close the modal */}
                   <button className="btn" onClick={update}>Request</button>
                 </form>

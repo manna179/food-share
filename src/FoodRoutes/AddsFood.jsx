@@ -21,7 +21,6 @@ const AddsFood = () => {
     const status = foodStatus;
     const additionalNotes = form.description.value;
     const name = user?.displayName;
-    console.log(user.name);
     const image = user?.photoURL;
     const email = user?.email;
     

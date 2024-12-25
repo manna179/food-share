@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate()
-  const { singInUser } = useContext(AuthContext);
+  const { singInUser,singInWithGoogle } = useContext(AuthContext);
   const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -21,6 +21,7 @@ const Login = () => {
                 console.log(error);
             })
           }
+
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -68,6 +69,8 @@ const Login = () => {
             </div>
             <div>Already have an account? <Link to='/register' className="btn btn-link">Register</Link></div>
           </form>
+
+         <Link> <button onClick={singInWithGoogle} className="btn w-full">Google Login</button></Link>
         </div>
       </div>
     </div>

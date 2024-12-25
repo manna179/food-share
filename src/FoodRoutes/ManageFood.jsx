@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { useGetFood } from "../hooks/food";
 import { useAuth } from "../hooks/useAuth";
+import axios from "axios";
 
 const ManageFood = () => {
   const { user } = useAuth();
-  const { data,refetch } = useGetFood({ email: user?.email });
+  const { data, refetch } = useGetFood({ email: user?.email });
 
-
-
-const handleDelete = (id) => {
+  const handleDelete = (id) => {
+    
     ////
-}
+  };
+
+  const handleUpdateStatus = async(e, id) => {
+    console.log(e.target.value, id);
+    const info = {
+      status: e.target.value,
+    };
+    const {data}=await axios.patch(`http://localhost:5000/foods/${id}`,info)
+    console.log(data);
+   
+  };
 
   console.log(data);
   return (
@@ -19,167 +29,68 @@ const handleDelete = (id) => {
         {/* head */}
         <thead>
           <tr>
-            <th>
-              <label>
-                <input type="checkbox" className="checkbox" />
-              </label>
-            </th>
-            <th>Name</th>
+            <th>NAME</th>
             <th>Job</th>
-            <th>Favorite Color</th>
-            <th></th>
+            <th>UPDATE</th>
+            <th>DELETE</th>
           </tr>
         </thead>
         <tbody>
           {/* row 1 */}
-          <tr>
-            <th>
-              <label>
-                <input type="checkbox" className="checkbox" />
-              </label>
-            </th>
-            <td>
-              <div className="flex items-center gap-3">
-                <div className="avatar">
-                  <div className="mask mask-squircle h-12 w-12">
-                    <img
-                      src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                      alt="Avatar Tailwind CSS Component"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <div className="font-bold">Hart Hagerty</div>
-                  <div className="text-sm opacity-50">United States</div>
-                </div>
-              </div>
-            </td>
-            <td>
-              Zemlak, Daniel and Leannon
-              <br />
-              <span className="badge badge-ghost badge-sm">
-                Desktop Support Technician
-              </span>
-            </td>
-            <td>Purple</td>
-            <th>
-              <button className="btn btn-ghost btn-xs">details</button>
-            </th>
-          </tr>
-          {/* row 2 */}
-          <tr>
-            <th>
-              <label>
-                <input type="checkbox" className="checkbox" />
-              </label>
-            </th>
-            <td>
-              <div className="flex items-center gap-3">
-                <div className="avatar">
-                  <div className="mask mask-squircle h-12 w-12">
-                    <img
-                      src="https://img.daisyui.com/images/profile/demo/3@94.webp"
-                      alt="Avatar Tailwind CSS Component"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <div className="font-bold">Brice Swyre</div>
-                  <div className="text-sm opacity-50">China</div>
-                </div>
-              </div>
-            </td>
-            <td>
-              Carroll Group
-              <br />
-              <span className="badge badge-ghost badge-sm">Tax Accountant</span>
-            </td>
-            <td>Red</td>
-            <th>
-              <button className="btn btn-ghost btn-xs">details</button>
-            </th>
-          </tr>
-          {/* row 3 */}
-          <tr>
-            <th>
-              <label>
-                <input type="checkbox" className="checkbox" />
-              </label>
-            </th>
-            <td>
-              <div className="flex items-center gap-3">
-                <div className="avatar">
-                  <div className="mask mask-squircle h-12 w-12">
-                    <img
-                      src="https://img.daisyui.com/images/profile/demo/4@94.webp"
-                      alt="Avatar Tailwind CSS Component"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <div className="font-bold">Marjy Ferencz</div>
-                  <div className="text-sm opacity-50">Russia</div>
-                </div>
-              </div>
-            </td>
-            <td>
-              Rowe-Schoen
-              <br />
-              <span className="badge badge-ghost badge-sm">
-                Office Assistant I
-              </span>
-            </td>
-            <td>Crimson</td>
-            <th>
-              <button className="btn btn-ghost btn-xs">details</button>
-            </th>
-          </tr>
-          {/* row 4 */}
-          <tr>
-            <th>
-              <label>
-                <input type="checkbox" className="checkbox" />
-              </label>
-            </th>
-            <td>
-              <div className="flex items-center gap-3">
-                <div className="avatar">
-                  <div className="mask mask-squircle h-12 w-12">
-                    <img
-                      src="https://img.daisyui.com/images/profile/demo/5@94.webp"
-                      alt="Avatar Tailwind CSS Component"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <div className="font-bold">Yancy Tear</div>
-                  <div className="text-sm opacity-50">Brazil</div>
-                </div>
-              </div>
-            </td>
-            <td>
-              Wyman-Ledner
-              <br />
-              <span className="badge badge-ghost badge-sm">
-                Community Outreach Specialist
-              </span>
-            </td>
-            <td>Indigo</td>
-            <th>
-              <button className="btn btn-ghost btn-xs">details</button>
-            </th>
-          </tr>
+          {data && data.length > 0 ? (
+            <>
+              {data.map((food) => (
+                <tr key={food._id}>
+                  <td>
+                    <div className="flex items-center gap-3">
+                      <div className="avatar">
+                        <div className="mask mask-squircle h-12 w-12">
+                          <img
+                            src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                            alt="Avatar Tailwind CSS Component"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <div className="font-bold">Hart Hagerty</div>
+                        <div className="text-sm opacity-50">United States</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    Zemlak, Daniel and Leannon
+                    <br />
+                    <span className="badge badge-ghost badge-sm">
+                      Desktop Support Technician
+                    </span>
+                  </td>
+                  <td>
+                    <select
+                      onChange={(e) => {
+                        handleUpdateStatus(e, food._id);
+                      }}
+                      defaultValue={food.status || "change Status"}
+                      name="status"
+                      id=""
+                    >
+                      <option disabled value="">
+                        Change Status
+                      </option>
+                      <option value="available">available</option>
+                      <option value="requested">requested</option>
+                    </select>
+                  </td>
+                  <th>
+                    <button className="btn btn-ghost btn-xs">details</button>
+                  </th>
+                </tr>
+              ))}
+            </>
+          ) : (
+            <></>
+          )}
         </tbody>
         {/* foot */}
-        <tfoot>
-          <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Job</th>
-            <th>Favorite Color</th>
-            <th></th>
-          </tr>
-        </tfoot>
       </table>
     </div>
   );

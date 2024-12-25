@@ -7,7 +7,7 @@ import { updateProfile } from "firebase/auth";
 const Register = () => {
   const navigate = useNavigate()
   const [error, setError] = useState("");
-  const { setUser, createUser } = useContext(AuthContext);
+  const { setUser, createUser,singInWithGoogle } = useContext(AuthContext);
 
   const handleRegisterSubmit =async (e) => {
     e.preventDefault();
@@ -123,6 +123,7 @@ const Register = () => {
               </Link>
             </div>
           </form>
+          <Link onClick={singInWithGoogle} className="btn ">Google Login</Link>
         </div>
       </div>
 

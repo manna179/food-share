@@ -4,56 +4,72 @@ import { useNavigate, useParams } from "react-router-dom";
 import AuthContext from "../providers/AuthContext";
 
 const FoodDetails = () => {
-  const navigate = useNavigate()
-    const {user}=useContext(AuthContext)
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
   const [food, setFood] = useState({});
-  const [note,setNote]=useState('')
+  const [note, setNote] = useState("");
   const { id } = useParams();
 
   const singleFood = async () => {
     const { data } = await axios.get(`http://localhost:5000/foods/${id}`);
     setFood(data);
-    setNote(data.additionalNotes)
+    setNote(data.additionalNotes);
   };
   useEffect(() => {
     singleFood();
   }, []);
 
-  const update =async ()=>{
-const payload = {
-  status:'requested',
-   additionalNotes:note,
-   quantity:food.foodQuantity
+  const update = async () => {
+    const payload = {
+      status: "requested",
+      additionalNotes: note,
+      quantity: food.foodQuantity,
+    };
 
-}
+    const { data } = await axios.put(
+      `http://localhost:5000/foods/${id}`,
+      payload
+    );
 
-    const {data}=await axios.put(`http://localhost:5000/foods/${id}`,payload)
-    
-  navigate('/myFoodRequest')
+    navigate("/myFoodRequest");
     console.log(data);
-    
-    return 
-  }
 
-console.log(food);
+    return;
+  };
+
+  console.log(food);
   console.log(note);
   return (
     <div className="card gap-10 md:card-side bg-base-100 shadow-xl">
       <div className="">
-      <figure className="bg-cover " >
-        <img className="bg-cover "
-          src={food.foodImage}
-          alt="Album"
-        />
-      </figure>
+        <figure className="">
+          <img
+            className="bg-cover h-[300px] w-[400px] rounded-lg "
+            src={food.foodImage}
+            alt="Album"
+          />
+        </figure>
       </div>
       <div className="card-body  ">
-        <h2 className="card-title">Food Name: {food.foodName}</h2>
-        <p>Quantity : {food.foodQuantity}</p>
-        <p>Expired Date: {food.expiredDate}</p>
-        <p>Donator Name: {food.name}</p>
-        <p>Food Status : {food.status}</p>
-        <p>Comment:{food.additionalNotes}</p>
+        <h2 className="card-title">
+          Food Name: <span className="text-red-500">{food.foodName}</span>
+        </h2>
+        <p className="text-black font-medium">
+          Quantity : <span className="text-red-500"> {food.foodQuantity}</span>
+        </p>
+        <p className="text-black font-medium">
+          Expired Date:{" "}
+          <span className="text-red-500"> {food.expiredDate}</span>
+        </p>
+        <p className="text-black font-medium">
+          Donator Name: <span className="text-red-500">{food.name}</span>
+        </p>
+        <p className="text-black font-medium">
+          Food Status : <span className="text-red-500">{food.status}</span>
+        </p>
+        <p className="text-black font-medium">
+          Comment: <span className="text-red-500">{food.additionalNotes}</span>
+        </p>
         <div className="card-actions justify-center">
           {/* You can open the modal using document.getElementById('ID').showModal() method */}
           <button
@@ -63,29 +79,61 @@ console.log(food);
             Request
           </button>
           <dialog id="my_modal_4" className="modal ">
+            <div className="modal-box w-11/12 max-w-4xl mx-auto">
 
-            <div className="modal-box w-11/12 max-w-5xl">
+
+            {/*  */}
+            <div className="flex justify-around items-center gap-4">
             <div>
-                <img src={food.foodImage} alt={food.foodName} />
+                <img
+                  className="h-[300px] w-[400px] mb-4 rounded-lg"
+                  src={food.foodImage}
+                  alt={food.foodName}
+                />
+              </div>
+              <div>
+                <h2 className="card-title">
+                  Food Name:{" "}
+                  <span className="text-red-500"> {food.foodName}</span>
+                </h2>
+                <p className="text-black font-medium">
+                  Quantity :{" "}
+                  <span className="text-red-500"> {food.foodQuantity}</span>
+                </p>
+                <p className="text-black font-medium">
+                  Expired Date:{" "}
+                  <span className="text-red-500"> {food.expiredDate}</span>
+                </p>
+                <p className="text-black font-medium">
+                  Donator Name:{" "}
+                  <span className="text-red-500">{food.name}</span>
+                </p>
+                <p className="text-black font-medium">
+                  Food Status :{" "}
+                  <span className="text-red-500">{food.status}</span>
+                </p>
+               
+                <label className="block mt-3 text-black font-medium" htmlFor="Note">
+                  Additional Note:
+                </label>
+                <input
+                  type="text"
+                  className="border border-gray-300 px-2 py-1  rounded-md"
+                  value={note}
+                  onChange={(e) => setNote(e.target.value)}
+                />
+              </div>
+
             </div>
-          <div>
-          <h2 className="card-title">Food Name: {food.foodName}</h2>
-        <p>Quantity : {food.foodQuantity}</p>
-        <p>Expired Date: {food.expiredDate}</p>
-        <p>Donator Name: {food.name}</p>
-        <p>Food Status : {food.status}</p>
-        <p>Comment:{food.additionalNotes}</p>
-        <label className="block mt-3" htmlFor="Note">Additional Note:</label>
-        <input type="text" className="border border-gray-300 px-2 py-1  rounded-md" value={note} onChange={(e)=>setNote(e.target.value)}/>
-          </div>
+            {/*  */}
+              
+             
               <div className="modal-action ">
                 <form method="dialog">
-                    
-                   
-
-                    
                   {/* if there is a button, it will close the modal */}
-                  <button className="btn" onClick={update}>Request</button>
+                  <button className="btn bg-green-400" onClick={update}>
+                    Request
+                  </button>
                 </form>
               </div>
             </div>

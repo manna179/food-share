@@ -1,23 +1,23 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import AuthContext from "../providers/AuthContext";
 
 const Navbar = () => {
   const { signOutUser, user } = useContext(AuthContext);
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-red-100">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">PlateShare</a>
+        <Link to='/' className="btn bg-transparent btn-ghost text-2xl">PlateShare</Link>
       </div>
 
       <div className="flex-none">
         <div className="flex mr-8 list-none gap-2 ">
           <li>
-            <NavLink to="/" className='btn'> Home</NavLink>
+            <NavLink to="/" className='btn bg-transparent'> Home</NavLink>
           </li>
           <li>
-            <NavLink to="/availableFoods"  className='btn'>Available Foods</NavLink>
+            <NavLink to="/availableFoods"  className='btn bg-transparent'>Available Foods</NavLink>
           </li>
         </div>
         <div className="flex list-none">
@@ -26,15 +26,17 @@ const Navbar = () => {
             {user ? (
               <>
                <div className="flex justify-center items-center">
-               <h2 className="mr-8 btn " onClick={signOutUser}>logout</h2>
+               <h2 className="mr-8 btn bg-transparent" onClick={signOutUser}>logout</h2>
                 <div className="dropdown dropdown-end">
                   <div
                     tabIndex={0}
                     role="button"
                     className="btn btn-ghost btn-circle avatar"
                   >
-                    <div className="w-10 rounded-full">
+                    <div className="w-10  rounded-full">
                       <img
+                      
+                      className="bg-cover w-full "
                         alt={user.name}
                         src={user?.photoUrl}
                       />

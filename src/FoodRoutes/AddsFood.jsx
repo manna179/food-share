@@ -4,11 +4,12 @@ import AuthContext from "../providers/AuthContext";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import { use } from "react";
+import toast from "react-hot-toast";
 
 const AddsFood = () => {
   const { user } = useContext(AuthContext);
   const [startDate, setStartDate] = useState(new Date());
-  const [foodStatus, setFoodStatus] = useState("available");
+
   // form create start
   const handleAddFoods = (e) => {
     e.preventDefault();
@@ -18,17 +19,19 @@ const AddsFood = () => {
     const foodImage = form.food_image.value;
     const expiredDate = startDate;
     const foodQuantity = form.food_quantity.value;
-    const status = foodStatus;
+    const status = form.food_status.value;
     const additionalNotes = form.description.value;
     const name = user?.displayName;
     const image = user?.photoURL;
     const email = user?.email;
-    
+    const location = form.food_location.value
+
     const newfood = {
       foodName,
       foodImage,
       expiredDate,
       foodQuantity,
+      location,
       status,
       additionalNotes,
       name,
@@ -40,8 +43,11 @@ const AddsFood = () => {
       .post("http://localhost:5000/foods", newfood)
       .then((res) => {
         console.log("inserted data to db", res);
+        toast.success('data added to db')
+        handleAddFoods()
+
       });
-      console.log(data);
+    console.log(data);
   };
 
   return (
@@ -101,21 +107,32 @@ const AddsFood = () => {
 
             {/* location */}
 
-            {/* food status */}
             <div>
-              <label className="text-gray-700 " htmlFor="food_status">
-                Food Status :
+              <label className="text-gray-700 " htmlFor="food_location">
+                Food Location
               </label>
-              <select
+              <input
+                id="food_location"
+                name="food_location"
+                type="text"
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+              />
+            </div>
+
+            {/* food status */}
+            <div className="flex flex-col gap-2 ">
+              <label className="text-gray-700 " htmlFor="food_status">
+                Food Status
+              </label>
+              <input
+             
                 defaultValue="available"
-                value={foodStatus}
-                onChange={(e) => setFoodStatus(e.target.value)}
-                className="border w-full"
-              >
-                <option value="available">Available</option>
-                <option value="unavailable">Unavailable</option>
-                <option value="claimed">Claimed</option>
-              </select>
+                id="food_status"
+                name="food_status"
+                type="text"
+                
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                />
             </div>
           </div>
 

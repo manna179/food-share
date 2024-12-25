@@ -6,7 +6,7 @@ const Navbar = () => {
   const { signOutUser, user } = useContext(AuthContext);
 
   return (
-    <div className="navbar bg-red-100">
+    <div className="navbar flex-col md:flex-row bg-red-100">
       <div className="flex-1">
         <Link to='/' className="btn bg-transparent btn-ghost text-2xl">PlateShare</Link>
       </div>
@@ -36,9 +36,9 @@ const Navbar = () => {
                     <div className="w-10  rounded-full">
                       <img
                       
-                      className="bg-cover w-full "
-                        alt={user.name}
-                        src={user?.photoUrl}
+                      className=" h-12 w-12 bg-cover "
+                      src={user?.photoUrl}
+                      alt={user.name}
                       />
                     </div>
                   </div>
@@ -62,7 +62,7 @@ const Navbar = () => {
               </>
             ) : (
               <>
-               <div className="flex justify-center items-center"> <li>
+               <div className="flex justify-center items-center gap-2"> <li>
                   <NavLink to="/login">Login</NavLink>
                 </li>
                 /

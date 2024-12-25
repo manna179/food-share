@@ -5,10 +5,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import { use } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddsFood = () => {
   const { user } = useContext(AuthContext);
   const [startDate, setStartDate] = useState(new Date());
+  const navigate = useNavigate()
 
   // form create start
   const handleAddFoods = (e) => {
@@ -44,7 +46,7 @@ const AddsFood = () => {
       .then((res) => {
         console.log("inserted data to db", res);
         toast.success('data added to db')
-        handleAddFoods()
+        navigate('/')
 
       });
     console.log(data);

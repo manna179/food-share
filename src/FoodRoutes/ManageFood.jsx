@@ -2,24 +2,29 @@ import React, { useState } from "react";
 import { useGetFood } from "../hooks/food";
 import { useAuth } from "../hooks/useAuth";
 import axios from "axios";
+import ErrorPage from "../Pages/ErrorPage";
 
 const ManageFood = () => {
   const { user } = useAuth();
   const { data, refetch } = useGetFood({ email: user?.email });
 
-  const handleDelete = (id) => {
-    
+  const handleDelete = async (id) => {
+    const { data } = await axios.delete(`http://localhost:5000/foods/${id}`);
+    console.log(data);
+
     ////
   };
 
-  const handleUpdateStatus = async(e, id) => {
+  const handleUpdateStatus = async (e, id) => {
     console.log(e.target.value, id);
     const info = {
       status: e.target.value,
     };
-    const {data}=await axios.patch(`http://localhost:5000/foods/${id}`,info)
+    const { data } = await axios.patch(
+      `http://localhost:5000/foods/${id}`,
+      info
+    );
     console.log(data);
-   
   };
 
   console.log(data);
@@ -30,7 +35,7 @@ const ManageFood = () => {
         <thead>
           <tr>
             <th>NAME</th>
-            <th>Job</th>
+            <th>Owner Name</th>
             <th>UPDATE</th>
             <th>DELETE</th>
           </tr>
@@ -46,23 +51,19 @@ const ManageFood = () => {
                       <div className="avatar">
                         <div className="mask mask-squircle h-12 w-12">
                           <img
-                            src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                            alt="Avatar Tailwind CSS Component"
+                            src={food.foodImage}
+                            alt={food.name}
                           />
                         </div>
                       </div>
                       <div>
-                        <div className="font-bold">Hart Hagerty</div>
-                        <div className="text-sm opacity-50">United States</div>
+                        <div className="font-bold">{food.foodName}</div>
+                        <div className="text-sm opacity-50">{food.location}</div>
                       </div>
                     </div>
                   </td>
-                  <td>
-                    Zemlak, Daniel and Leannon
-                    <br />
-                    <span className="badge badge-ghost badge-sm">
-                      Desktop Support Technician
-                    </span>
+                  <td >
+                   {food.name}
                   </td>
                   <td>
                     <select
@@ -81,13 +82,20 @@ const ManageFood = () => {
                     </select>
                   </td>
                   <th>
-                    <button className="btn btn-ghost btn-xs">details</button>
+                    <button
+                      onClick={() => handleDelete(food._id)}
+                      className="btn btn-ghost btn-xs"
+                    >
+                      Delete
+                    </button>
                   </th>
                 </tr>
               ))}
             </>
           ) : (
-            <></>
+            <>
+              <ErrorPage></ErrorPage>
+            </>
           )}
         </tbody>
         {/* foot */}

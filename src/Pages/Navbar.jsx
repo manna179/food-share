@@ -19,6 +19,9 @@ const Navbar = () => {
           <li>
             <NavLink to="/availableFoods"  className='btn bg-transparent'>Available Foods</NavLink>
           </li>
+          <li>
+            <NavLink to="/allFoods"  className='btn bg-transparent'>All Foods</NavLink>
+          </li>
         </div>
         <div className="flex list-none">
         
@@ -38,13 +41,13 @@ const Navbar = () => {
                       
                       className=" h-12 w-12 bg-cover "
                       src={user?.photoUrl}
-                      alt={user.name}
+                      alt={user?.name}
                       />
                     </div>
                   </div>
                   <ul
                     tabIndex={0}
-                    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[12] mt-3 w-52 p-2 shadow"
                   >
                     <li>
                       <NavLink to="/addsFood">Add Food</NavLink>

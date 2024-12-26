@@ -6,6 +6,8 @@ import axios from "axios";
 import { use } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { format } from "date-fns";
+
 
 const AddsFood = () => {
   const { user } = useContext(AuthContext);
@@ -19,7 +21,7 @@ const AddsFood = () => {
 
     const foodName = form.food_name.value;
     const foodImage = form.food_image.value;
-    const expiredDate = startDate;
+    const expiredDate =format(startDate, 'MM/dd/yyyy');
     const foodQuantity = form.food_quantity.value;
     const status = form.food_status.value;
     const additionalNotes = form.description.value;
@@ -54,13 +56,13 @@ const AddsFood = () => {
 
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-306px)] my-12">
-      <section className=" p-2 md:p-6 mx-auto bg-white rounded-md shadow-md ">
-        <h2 className="text-lg font-semibold text-gray-700 capitalize ">
+      <section className=" p-2 md:p-6 mx-auto bg-base-200 rounded-md shadow-md ">
+        <h2 className="text-2xl font-bold text-center text-gray-700 capitalize ">
           Post a Job
         </h2>
 
         <form onSubmit={handleAddFoods}>
-          <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2 ">
             <div>
               <label className="text-gray-700 " htmlFor="food_name">
                 Food Name
@@ -89,7 +91,7 @@ const AddsFood = () => {
 
               {/* Date Picker Input Field */}
               <DatePicker
-                className="border p-2 rounded-md"
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
               />
@@ -132,6 +134,7 @@ const AddsFood = () => {
                 id="food_status"
                 name="food_status"
                 type="text"
+                readOnly
                 
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                 />
@@ -150,7 +153,7 @@ const AddsFood = () => {
             ></textarea>
           </div>
           <div className="flex justify-end mt-6">
-            <button className="disabled:cursor-not-allowed px-8 py-2.5 leading-5 text-white transition-colors duration-300 transhtmlForm bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
+            <button className="disabled:cursor-not-allowed px-8 py-2.5 leading-5 text-white transition-colors duration-300 transhtmlForm bg-red-400 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
               Add Foods
             </button>
           </div>

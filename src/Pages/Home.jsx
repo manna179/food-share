@@ -5,12 +5,13 @@ import { useQuery } from "@tanstack/react-query";
 import FoodCard from "../FoodRoutes/FoodCard";
 import { Link } from "react-router-dom";
 import Banner from "./Banner";
+import ExtraSection from "./ExtraSection";
 
 const Home = () => {
   const { user } = useContext(AuthContext);
   const fetchFoods = async () => {
     const response = await axios.get("http://localhost:5000/foods");
-    return response.data; // Return the fetched data
+    return response.data;
   };
   const {
     data: foods,
@@ -25,7 +26,6 @@ const Home = () => {
   if (error) {
     return (
       <div className="flex justify-center items-center h-full w-full">
-        {" "}
         <p className="w-full text-center">Error: {error.message}</p>;
       </div>
     );
@@ -33,22 +33,34 @@ const Home = () => {
 
   return (
     <div>
-      <Banner></Banner>
+      <div className="mt-4 mb-4">
+        <Banner></Banner>
+      </div>
       <div>
-        <h2 className="text-3xl font-medium text-red-600 text-center">Explore Featured Foods</h2>
-        <p className="text-lg text-center font-semibold text-gray-500">Check out our featured selections, handpicked for you!</p>
+        <h2 className="text-3xl font-bold text-red-600 text-center">
+          Explore Featured Foods
+        </h2>
+        <p className="text-lg text-center font-semibold text-gray-500">
+          Check out our featured selections, handpicked for you!
+        </p>
       </div>
       <h2 className="text-xl font-bold mb-3">Food Featured:</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {foods.map((food) => (
           <FoodCard key={food._id} food={food}></FoodCard>
         ))}
       </div>
 
-      <Link to="/availableFoods">
+      <Link to="/allFoods">
         {" "}
-        <button className="btn w-full btn-primary mt-4">see all </button>
+        <button className="btn w-full bg-red-400 hover:bg-slate-700 hover:text-white mt-4">
+          see all{" "}
+        </button>
       </Link>
+
+      <div>
+        <ExtraSection></ExtraSection>
+      </div>
     </div>
   );
 };

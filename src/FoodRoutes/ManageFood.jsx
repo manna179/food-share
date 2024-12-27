@@ -3,6 +3,7 @@ import { useGetFood } from "../hooks/food";
 import { useAuth } from "../hooks/useAuth";
 import axios from "axios";
 import ErrorPage from "../Pages/ErrorPage";
+import { MdOutlineDeleteForever } from "react-icons/md";
 
 const ManageFood = () => {
   const { user } = useAuth();
@@ -11,6 +12,7 @@ const ManageFood = () => {
   const handleDelete = async (id) => {
     const { data } = await axios.delete(`http://localhost:5000/foods/${id}`);
     console.log(data);
+   refetch
 
     ////
   };
@@ -86,7 +88,7 @@ const ManageFood = () => {
                       onClick={() => handleDelete(food._id)}
                       className="btn btn-ghost btn-xs"
                     >
-                      Delete
+                  <MdOutlineDeleteForever className="text-2xl text-red-500"/>
                     </button>
                   </th>
                 </tr>

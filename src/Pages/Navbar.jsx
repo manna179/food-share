@@ -40,7 +40,7 @@ const Navbar = () => {
                       <img
                       
                       className=" h-12 w-12 bg-cover "
-                      src={user?.photoUrl}
+                      src={user?.photoURL}
                       alt={user?.name}
                       />
                     </div>

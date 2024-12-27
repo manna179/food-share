@@ -5,8 +5,10 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { updateProfile } from "firebase/auth";
 import Lottie from "lottie-react";
 import lottieRegister from '../../src/lottie/register.json'
+import { useAuth } from "../hooks/useAuth";
 
 const Register = () => {
+  const {user} = useAuth()
   const navigate = useNavigate()
   const [error, setError] = useState("");
   const { setUser, createUser,singInWithGoogle } = useContext(AuthContext);
@@ -18,20 +20,6 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const photo = form.photo.value;
-    // const formdata = { name, password, email, photo };
-
-    // if (!/[a-z]/.test(password)) {
-    //   setError("password should have one lowercase");
-    //   return;
-    // }
-    // if (!/[A-Z]/.test(password)) {
-    //   setError("password should have one uppercase");
-    //   return;
-    // }
-    // if (password.length < 6) {
-    //   setError("password should be 6 character");
-    //   return;
-    // }
     createUser(email, password)
       .then((res) => {
         setUser(res.user),
@@ -49,12 +37,27 @@ const Register = () => {
 
       })
       .catch((err) => {
-        console.log(err.message);
+        setError(err.message);
       });
+    
+
+    if (!/[a-z]/.test(password)) {
+      setError("password should have one lowercase");
+      return;
+    }
+    if (!/[A-Z]/.test(password)) {
+      setError("password should have one uppercase");
+      return;
+    }
+    if (password.length < 6) {
+      setError("password should be 6 character");
+      return;
+    }
+    
   };
 
   return (
-    <div className="hero bg-base-200 min-h-screen">
+    <div className="hero bg-blue-950 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
          
@@ -127,11 +130,12 @@ const Register = () => {
               </Link>
             </div>
           </form>
+          <div>{error && <p className="text-red-500">{error}</p>}</div>
           <Link onClick={singInWithGoogle} className="btn ">Google Login</Link>
         </div>
       </div>
 
-      <div>{error && <p className="text-red-500">{error.message}</p>}</div>
+      
     </div>
   );
 };

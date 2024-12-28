@@ -44,7 +44,7 @@ const AddsFood = () => {
     };
 
     const { data } = axios
-      .post("http://localhost:5000/foods", newfood)
+      .post("https://plate-share-server.vercel.app/foods", newfood)
       .then((res) => {
         console.log("inserted data to db", res);
         toast.success('data added to db')

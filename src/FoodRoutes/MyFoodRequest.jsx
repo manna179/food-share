@@ -4,8 +4,8 @@ import React from "react";
 
 const MyFoodRequest = () => {
   const fetchFoods = async () => {
-    const response = await axios.get("http://localhost:5000/foods");
-    console.log(response.data);
+    const response = await axios.get("https://plate-share-server.vercel.app/foods");
+    // console.log(response.data);
     return response.data.filter((food) => food.status === "requested"); // Return the fetched data
   };
   const {

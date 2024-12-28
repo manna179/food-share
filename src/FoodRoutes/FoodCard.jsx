@@ -9,7 +9,7 @@ const FoodCard = ({ food }) => {
     location,
     expiredDate,
   } = food;
-  console.log(food);
+  // console.log(food);
   return (
     <div className="card glass w-96">
       <figure>

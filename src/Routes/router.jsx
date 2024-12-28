@@ -31,29 +31,39 @@ const router = createBrowserRouter([
       },
       {
         path: "/addsFood",
-        element: <PrivateRoute>
-          <AddsFood></AddsFood>
-        </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AddsFood></AddsFood>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/myFoodRequest",
-        element: <PrivateRoute>
-          <MyFoodRequest></MyFoodRequest>
-        </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <MyFoodRequest></MyFoodRequest>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/manageFood",
-        element: <PrivateRoute>
-          <ManageFood></ManageFood>
-        </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <ManageFood></ManageFood>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/availableFoods",
-        element: <AvailableFoods></AvailableFoods>,
+        element: (
+          <PrivateRoute>
+            <AvailableFoods></AvailableFoods>
+          </PrivateRoute>
+        ),
       },
       {
-        path:'/allFoods',
-        element:<AllFoods></AllFoods>
+        path: "/allFoods",
+        element: <AllFoods></AllFoods>,
       },
       {
         path: "/foods/:id",

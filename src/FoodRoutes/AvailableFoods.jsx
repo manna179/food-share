@@ -12,15 +12,16 @@ const AvailableFoods = () => {
   const { user } = useContext(AuthContext);
   const fetchFoods = async () => {
     const response = await axios.get(
-      `http://localhost:5000/foods?sort=${sort}&search=${search}`
+      `https://plate-share-server.vercel.app/foods?sort=${sort}&search=${search}`
     );
-    console.log(response.data);
+    // console.log(response.data);
     return response.data.filter((food) => food.status === "available"); // Return the fetched data
   };
   const {
     data: foods,
     isLoading,
     error,
+    
   } = useQuery({
     queryKey: ["foods", sort, search],
     queryFn: fetchFoods,

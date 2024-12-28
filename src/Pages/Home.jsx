@@ -10,7 +10,7 @@ import ExtraSection from "./ExtraSection";
 const Home = () => {
   const { user } = useContext(AuthContext);
   const fetchFoods = async () => {
-    const response = await axios.get("http://localhost:5000/foods");
+    const response = await axios.get("https://plate-share-server.vercel.app/foods");
     return response.data;
   };
   const {

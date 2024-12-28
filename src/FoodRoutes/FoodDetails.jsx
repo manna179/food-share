@@ -11,7 +11,7 @@ const FoodDetails = () => {
   const { id } = useParams();
 
   const singleFood = async () => {
-    const { data } = await axios.get(`http://localhost:5000/foods/${id}`);
+    const { data } = await axios.get(`https://plate-share-server.vercel.app/foods/${id}`);
     setFood(data);
     setNote(data.additionalNotes);
   };
@@ -27,12 +27,12 @@ const FoodDetails = () => {
     };
 
     const { data } = await axios.put(
-      `http://localhost:5000/foods/${id}`,
+      `https://plate-share-server.vercel.app/foods/${id}`,
       payload
     );
 
     navigate("/myFoodRequest");
-    console.log(data);
+  
 
     return;
   };

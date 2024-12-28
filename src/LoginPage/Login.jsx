@@ -68,7 +68,7 @@ const Login = () => {
             <div>
               Already have an account?{" "}
               <Link to="/register" className="btn btn-link">
-                Register
+                Register or login
               </Link>
             </div>
           </form>

@@ -12,7 +12,7 @@ export const useGetFood = (query) => {
         params.append("email", query?.email);
       }
 
-      const { data } = await axios.get(`http://localhost:5000/foods`, {
+      const { data } = await axios.get(`https://plate-share-server.vercel.app/foods`, {
         params,
       });
    

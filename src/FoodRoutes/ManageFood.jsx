@@ -10,8 +10,8 @@ const ManageFood = () => {
   const { data, refetch } = useGetFood({ email: user?.email });
 
   const handleDelete = async (id) => {
-    const { data } = await axios.delete(`http://localhost:5000/foods/${id}`);
-    console.log(data);
+    const { data } = await axios.delete(`https://plate-share-server.vercel.app/foods/${id}`);
+  
    refetch
 
     ////
@@ -23,13 +23,13 @@ const ManageFood = () => {
       status: e.target.value,
     };
     const { data } = await axios.patch(
-      `http://localhost:5000/foods/${id}`,
+      `https://plate-share-server.vercel.app/foods/${id}`,
       info
     );
-    console.log(data);
+   
   };
 
-  console.log(data);
+ 
   return (
     <div className="overflow-x-auto">
       <table className="table">

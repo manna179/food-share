@@ -10,21 +10,19 @@ const AvailableFoods = () => {
   const [search, setSearch] = useState("");
   const [isThreeColumn, setIsThreeColumn] = useState(true);
   const { user } = useContext(AuthContext);
-  const fetchFoods = async () => {
-    const response = await axios.get(
-      `https://plate-share-server.vercel.app/foods?sort=${sort}&search=${search}`
-    );
-    // console.log(response.data);
-    return response.data.filter((food) => food.status === "available"); // Return the fetched data
-  };
   const {
     data: foods,
     isLoading,
     error,
-    
   } = useQuery({
     queryKey: ["foods", sort, search],
-    queryFn: fetchFoods,
+    queryFn:async()=>{
+      const response = await axios.get(
+        `https://plate-share-server.vercel.app/foods?sort=${sort}&search=${search}`
+      );
+      // console.log(response.data);
+      return  response.data.filter((food) => food.status === "available"); // Return the fetched data
+    },
     refetchOnWindowFocus: false,
     refetchOnReconnect: true,
     refetchOnMount: true,

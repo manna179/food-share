@@ -42,12 +42,12 @@ const AvailableFoods = () => {
   }
 
   return (
-    <div>
+    <div className="mb-4">
       <div className="text-center mb-4 mt-4">
-        <h2 className="text-3xl font-semibold text-red-900 ">
+        <h2 className="text-3xl font-semibold text-red-500 ">
           From Your Plate to Someone's Table
         </h2>
-        <p className="text-[16px] font-normal text-gray-500">
+        <p className="text-[16px] font-normal text-gray-200">
           Connect with your community to reduce waste and spread kindness.
         </p>
       </div>
@@ -71,7 +71,7 @@ const AvailableFoods = () => {
           </select>
           <button
             onClick={() => setIsThreeColumn(!isThreeColumn)} // Toggle layout
-            className="bg-transparent-500 text-gray-700 px-4 py-4 border rounded-md"
+            className="bg-transparent-500 text-slate-100 px-4 py-4 border rounded-md"
           >
             {isThreeColumn ? "Switch to 2 Columns" : "Switch to 3 Columns"}
           </button>

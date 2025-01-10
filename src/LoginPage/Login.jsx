@@ -3,6 +3,8 @@ import AuthContext from "../providers/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import loginLottie from '../../src/lottie/login.json'
+import { IoHome } from "react-icons/io5";
+import { RiArrowGoBackLine } from "react-icons/ri";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -23,15 +25,25 @@ const Login = () => {
       });
   };
 
+  const handleSignInWithGoogle=()=>{
+    singInWithGoogle()
+    .then(res=>{
+      navigate('/')
+    }).catch(err=>{
+      console.log(err);
+    })
+
+  }
+
   return (
     <div className="hero bg-blue-950 rounded-lg min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
-          <Lottie animationData={loginLottie}></Lottie>
+          <Lottie className="" animationData={loginLottie}></Lottie>
         </div>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <form onSubmit={handleSignIn} className="card-body">
-            <h1 className="text-5xl font-bold mb-3">Login now!</h1>
+            <h1 className="text-5xl font-bold ">Login now!</h1>
 
             <div className="form-control">
               <label className="label">
@@ -63,24 +75,26 @@ const Login = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn bg-red-400 text-gray-200">Login</button>
+              <button className="btn bg-red-500 hover:bg-red-400 text-gray-200">Login</button>
             </div>
-            <div>
+            <div className="text-center">
               Already have an account?{" "}
-              <Link to="/register" className="btn btn-link">
-                Register or login
+              <Link to="/register" className="btn text-red-500 btn-link">
+                Register 
               </Link>
             </div>
-          </form>
-          <Link>
+            <Link>
             {" "}
             <button
-              onClick={singInWithGoogle}
-              className="btn w-full hover:bg-green-200 bg-red-400 mb-3 mt-3"
+              onClick={handleSignInWithGoogle}
+              className="btn w-full hover:bg-red-400   bg-red-500 mb-3 mt-3"
             >
               Google Login
             </button>
           </Link>
+          <Link to='/' className="flex justify-end"><div className="flex items-center gap-2 text-red-500"> <RiArrowGoBackLine /> <IoHome /></div></Link>
+          </form>
+          
         </div>
       </div>
     </div>

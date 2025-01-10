@@ -29,6 +29,7 @@ const AuthProvider = ({ children }) => {
 
   const singInWithGoogle = () => {
     setLoading(true);
+
     return signInWithPopup(auth, googleProvider);
   };
 

@@ -6,73 +6,96 @@ const Navbar = () => {
   const { signOutUser, user } = useContext(AuthContext);
 
   return (
-    <div className="navbar flex-col md:flex-row bg-red-100">
+    <div className="navbar sticky items-center top-0 z-40 flex-col md:flex-row text-black bg-red-400 px-5">
       <div className="flex-1">
-        <Link to='/' className="btn bg-transparent btn-ghost text-2xl">PlateShare</Link>
+        <Link to="/" className="btn bg-transparent btn-ghost text-2xl">
+          PlateShare
+        </Link>
       </div>
 
-      <div className="flex-none">
-        <div className="flex mr-8 list-none gap-2 ">
+      <div className="flex-none items-center">
+        <div className="flex mr-8 items-center list-none gap-2 ">
           <li>
-            <NavLink to="/" className='btn bg-transparent'> Home</NavLink>
-          </li>
+            <NavLink to="/" className="  text-black">
+              {" "}
+              Home
+            </NavLink>
+          </li>|
           <li>
-            <NavLink to="/availableFoods"  className='btn bg-transparent'>Available Foods</NavLink>
-          </li>
+            <NavLink
+              to="/availableFoods"
+              className=" text-black"
+            >
+              Available 
+            </NavLink>
+          </li>|
           <li>
-            <NavLink to="/allFoods"  className='btn bg-transparent'>All Foods</NavLink>
+            <NavLink to="/allFoods" className=" text-black">
+             Foods
+            </NavLink>
+          </li>|
+          <li>
+            <NavLink to='/extraSection' className=" text-black">About us</NavLink>
           </li>
         </div>
         <div className="flex list-none">
-        
           <div>
             {user ? (
               <>
-               <div className="flex justify-center items-center">
-               <h2 className="mr-8 btn bg-transparent" onClick={signOutUser}>logout</h2>
-                <div className="dropdown dropdown-end">
-                  <div
-                    tabIndex={0}
-                    role="button"
-                    className="btn btn-ghost btn-circle avatar"
-                  >
-                    <div className="w-10  rounded-full">
-                      <img
-                      
-                      className=" h-12 w-12 bg-cover "
-                      src={user?.photoURL}
-                      alt={user?.name}
-                      />
+                <div className="flex justify-center items-center">
+                  
+                  <div className="dropdown dropdown-end">
+                    <div
+                      tabIndex={0}
+                      role="button"
+                      className=" btn-circle avatar"
+                    >
+                      <div className=" rounded-full">
+                        <img
+                          className=" h-12 w-12 bg-cover "
+                          src={user?.photoURL}
+                          alt={user?.name}
+                        />
+                      </div>
                     </div>
+                    <ul
+                      tabIndex={0}
+                      className="menu menu-sm dropdown-content bg-red-500  text-black rounded-box z-[12] mt-3 w-52 p-2 shadow"
+                    >
+                      <li>
+                        <NavLink to="/addsFood">Add Food</NavLink>
+                      </li>
+                      <li>
+                        <NavLink to="/manageFood">Manage My Foods</NavLink>
+                      </li>
+                      <li>
+                        <NavLink to="/myFoodRequest">My Food Request</NavLink>
+                      </li>
+                      <li>
+                    <h2
+                      className="mr-8  text-black"
+                      onClick={signOutUser}
+                    >
+                      logout
+                    </h2>
+                  </li>
+                    </ul>
                   </div>
-                  <ul
-                    tabIndex={0}
-                    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[12] mt-3 w-52 p-2 shadow"
-                  >
-                    <li>
-                      <NavLink to="/addsFood">Add Food</NavLink>
-                    </li>
-                    <li>
-                      <NavLink to="/manageFood">Manage My Foods</NavLink>
-                    </li>
-                    <li>
-                      <NavLink to="/myFoodRequest">My Food Request</NavLink>
-                    </li>
-                    <h3></h3>
-                  </ul>
                 </div>
-               </div>
               </>
             ) : (
               <>
-               <div className="flex justify-center items-center gap-2"> <li>
-                  <NavLink to="/login">Login</NavLink>
-                </li>
-                /
-                <li>
+                <div className="flex justify-center items-center gap-2">
                   {" "}
-                  <NavLink to="/register">Register</NavLink>
-                </li></div>
+                  <li>
+                    <NavLink to="/login">Login</NavLink>
+                  </li>
+                  /
+                  <li>
+                    {" "}
+                    <NavLink to="/register">Register</NavLink>
+                  </li>
+                </div>
               </>
             )}
           </div>

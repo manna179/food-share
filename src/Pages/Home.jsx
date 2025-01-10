@@ -6,6 +6,7 @@ import FoodCard from "../FoodRoutes/FoodCard";
 import { Link } from "react-router-dom";
 import Banner from "./Banner";
 import ExtraSection from "./ExtraSection";
+import Faq from "./Faq";
 
 const Home = () => {
   const { user } = useContext(AuthContext);
@@ -33,11 +34,9 @@ const Home = () => {
 
   return (
     <div>
-      <div className="mt-4 mb-4">
-        <Banner></Banner>
-      </div>
+      
       <div>
-        <h2 className="text-3xl font-bold text-red-600 text-center">
+        <h2 className="text-3xl mt-6 font-bold text-red-600 text-center">
           Explore Featured Foods
         </h2>
         <p className="text-lg text-center font-semibold text-gray-500">
@@ -60,6 +59,9 @@ const Home = () => {
 
       <div>
         <ExtraSection></ExtraSection>
+      </div>
+      <div className=" rounded-lg mb-6 mt-4">
+        <Faq></Faq>
       </div>
     </div>
   );

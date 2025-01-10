@@ -12,7 +12,7 @@ const ManageFood = () => {
   const handleDelete = async (id) => {
     const { data } = await axios.delete(`https://plate-share-server.vercel.app/foods/${id}`);
   
-   refetch
+   refetch()
 
     ////
   };

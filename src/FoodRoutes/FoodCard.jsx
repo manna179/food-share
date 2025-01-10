@@ -11,25 +11,25 @@ const FoodCard = ({ food }) => {
   } = food;
   // console.log(food);
   return (
-    <div className="card glass w-96">
+    <div className="card glass p-2">
       <figure>
-        <img className="h-[300px] w-[400px] bg-cover rounded-br-md rounded-bl-md" src={foodImage} alt={foodName} />
+        <img className=" bg-cover rounded-br-md rounded-bl-md" src={foodImage} alt={foodName} />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">Food Name: {foodName}</h2>
-        <p className="text-black font-semibold">
+        <h2 className="card-title flex justify-between"><span>Food Name</span><span> {foodName}</span></h2>
+        <p className="text-black font-semibold flex justify-between ">
           {" "}
-          Food Quantity: <span className="text-red-500">{foodQuantity}</span>
+         <span> Food Quantity</span>  <span className="text-red-500">{foodQuantity}</span>
         </p>
-        <p className="text-black font-semibold">
-          Status: <span className="text-red-500">{status}</span>
+        <p className="text-black font-semibold flex justify-between">
+          <span>Status</span> <span className="text-red-500">{status}</span>
         </p>
 
-        <p className="text-black font-semibold">
-          Location: <span className="text-red-500">{location}</span>
+        <p className="text-black font-semibold flex justify-between">
+          <span>Location</span><span className="text-red-500">{location}</span>
         </p>
-        <p className="text-black font-semibold">
-          Expired At: <span className="text-red-500">{expiredDate}</span>
+        <p className="text-black font-semibold flex justify-between">
+          <span>Expired At</span> <span className="text-red-500">{expiredDate}</span>
         </p>
         <div className="card-actions justify-end"></div>
       </div>

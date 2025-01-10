@@ -11,6 +11,8 @@ import FoodDetails from "../FoodRoutes/FoodDetails";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../Pages/ErrorPage";
 import AllFoods from "../FoodRoutes/AllFoods";
+import ExtraSection from "../Pages/ExtraSection";
+import Faq from "../Pages/Faq";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,14 +23,7 @@ const router = createBrowserRouter([
         index: true,
         element: <Home></Home>,
       },
-      {
-        path: "/login",
-        element: <Login></Login>,
-      },
-      {
-        path: "/register",
-        element: <Register></Register>,
-      },
+
       {
         path: "/addsFood",
         element: (
@@ -44,6 +39,10 @@ const router = createBrowserRouter([
             <MyFoodRequest></MyFoodRequest>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/extraSection",
+        element: <ExtraSection></ExtraSection>,
       },
       {
         path: "/manageFood",
@@ -73,7 +72,19 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path:'/faq',
+        element:<Faq></Faq>
+      }
     ],
+  },
+  {
+    path: "/login",
+    element: <Login></Login>,
+  },
+  {
+    path: "/register",
+    element: <Register></Register>,
   },
 ]);
 

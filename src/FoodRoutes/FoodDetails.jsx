@@ -40,7 +40,8 @@ const FoodDetails = () => {
   console.log(food);
   console.log(note);
   return (
-    <div className="card gap-10 md:card-side bg-base-100 shadow-xl">
+    <div className="card  gap-10 md:card-side bg-base-100 my-8 shadow-xl">
+      
       <div className="">
         <figure className="">
           <img
@@ -73,7 +74,7 @@ const FoodDetails = () => {
         <div className="card-actions justify-center">
           {/* You can open the modal using document.getElementById('ID').showModal() method */}
           <button
-            className="btn"
+            className="btn bg-red-400 hover:bg-red-300"
             onClick={() => document.getElementById("my_modal_4").showModal()}
           >
             Request
@@ -131,7 +132,7 @@ const FoodDetails = () => {
               <div className="modal-action ">
                 <form method="dialog">
                   {/* if there is a button, it will close the modal */}
-                  <button className="btn bg-green-400" onClick={update}>
+                  <button className="btn bg-red-400" onClick={update}>
                     Request
                   </button>
                 </form>

@@ -51,13 +51,13 @@ const AvailableFoods = () => {
           Connect with your community to reduce waste and spread kindness.
         </p>
       </div>
-      <div className="flex justify-between items-center mb-3">
+      <div className="flex justify-between flex-col md:flex-row  items-center mb-3">
         <div>
           <strong className="text-xl font-bold">
             Total Available ({foods.length})
           </strong>
         </div>
-        <div className="flex gap-2 items-center">
+        <div className="flex flex-col md:flex-row gap-2 items-center">
           <label htmlFor="expireDate">Sort By:</label>
           <select
             name="expireDate"
@@ -96,15 +96,15 @@ const AvailableFoods = () => {
       <div
         className={`grid  ${
           isThreeColumn
-            ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-            : "grid-cols-1 md:grid-cols-2 "
+            ? " md:grid-cols-3 "
+            : " md:grid-cols-2 "
         } gap-4`}
       >
         {foods.map((food) => (
-          <div key={food._id} className="card glass w-96  ">
+          <div key={food._id} className="card glass w-full  ">
             <figure>
               <img
-                className="h-[300px] bg-cover w-[400px] rounded-br-md rounded-bl-md"
+                className=" rounded-br-md rounded-bl-md"
                 src={food?.foodImage}
                 alt={food?.foodName}
               />

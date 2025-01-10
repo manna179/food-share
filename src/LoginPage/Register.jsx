@@ -6,6 +6,8 @@ import { updateProfile } from "firebase/auth";
 import Lottie from "lottie-react";
 import lottieRegister from "../../src/lottie/register.json";
 import { useAuth } from "../hooks/useAuth";
+import { RiArrowGoBackLine } from "react-icons/ri";
+import { IoHome } from "react-icons/io5";
 
 const Register = () => {
   const { user } = useAuth();
@@ -88,6 +90,14 @@ const Register = () => {
       setError(err.message);
     }
   };
+  const handleGoogleLogin = ()=>{
+    singInWithGoogle()
+    .then(res=>{
+      navigate('/')
+    }).catch(data=>{
+      console.log(data);
+    })
+  }
 
   return (
     <div className="hero bg-blue-950 min-h-screen">
@@ -152,20 +162,22 @@ const Register = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Register</button>
+              <button className="btn hover:bg-red-400 bg-red-500">Register</button>
             </div>
 
             <div>
               Already have an account?{" "}
-              <Link to="/login" className="btn btn-link">
+              <Link to="/login" className="btn text-red-500 btn-link">
                 Login
               </Link>
             </div>
-          </form>
-          <div>{error && <p className="text-red-500">{error}</p>}</div>
-          <Link onClick={singInWithGoogle} className="btn ">
+            <Link onClick={handleGoogleLogin} className="btn bg-red-500 hover:bg-red-400">
             Google Login
           </Link>
+            <Link to='/' className="flex justify-end"><div className="flex items-center gap-2 text-red-500"> <RiArrowGoBackLine /> <IoHome /></div></Link>
+          </form>
+          <div>{error && <p className="text-red-500">{error}</p>}</div>
+          
         </div>
       </div>
     </div>

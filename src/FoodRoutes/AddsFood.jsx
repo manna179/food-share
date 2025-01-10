@@ -7,6 +7,8 @@ import { use } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
+import Lottie from "lottie-react";
+import post from '../lottie/post.json'
 
 
 const AddsFood = () => {
@@ -55,8 +57,12 @@ const AddsFood = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-[calc(100vh-306px)] my-12">
-      <section className=" p-2 md:p-6 mx-auto bg-base-200 rounded-md shadow-md ">
+    <div className="flex flex-row-reverse gap-10 justify-between items-center min-h-[calc(100vh-306px)] my-12 w-full">
+      <div className="w-full">
+        <Lottie animationData={post}> </Lottie>
+
+      </div>
+      <section className=" p-2 md:p-6 mx-auto bg-slate-100 rounded-md shadow-md w-full ">
         <h2 className="text-2xl font-bold text-center text-gray-700 capitalize ">
           Post a Job
         </h2>

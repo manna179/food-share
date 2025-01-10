@@ -28,19 +28,19 @@ const AllFoods = () => {
     );
   }
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col  mb-8">
       <h2 className="text-2xl font-bold mb-4 mt-4"> All Foods: ({foods.length})</h2>
-     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
      {foods.map((food) => (
-        <div key={food._id} className="card glass w-96  ">
+        <div key={food._id} className="card glass w-full  ">
           <figure>
             <img
-              className="h-[300px] bg-cover w-[400px] rounded-br-md rounded-bl-md"
+              className=" rounded-br-md rounded-bl-md"
               src={food?.foodImage}
               alt={food?.foodName}
             />
           </figure>
-          <div className="card-body">
+          <div className="">
             <h2 className="card-title text-black font-semibold">
               Food Name: <span className="text-red-500"> {food?.foodName}</span>
             </h2>
@@ -63,7 +63,7 @@ const AllFoods = () => {
 
             <div className="card-actions justify-end">
               <Link to={`/foods/${food._id}`}>
-                <button className="btn hover:bg-green-200 hover:text-black bg-red-600 text-gray-200">
+                <button className="btn btn-link text-red-500">
                   view details
                 </button>
               </Link>
@@ -72,7 +72,7 @@ const AllFoods = () => {
         </div>
       ))}
      </div>
-     <Link to='/availableFoods'><button className="btn bg-red-400 w-full">See Available</button></Link>
+     <Link to='/availableFoods'><button className="btn mt-4 bg-red-400 w-full">See Available</button></Link>
     </div>
   );
 };

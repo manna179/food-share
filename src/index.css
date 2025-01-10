@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-Navbar div li .active{
+.active{
     text-decoration: underline;
+    
 }

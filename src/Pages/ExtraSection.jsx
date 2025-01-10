@@ -4,7 +4,7 @@ const ExtraSection = () => {
   return (
     <div>
       <div>
-        <h2 className="text-3xl text-center font-bold mt-10">
+        <h2 className="text-3xl text-center text-red-500 font-bold mt-10">
           Together, we're building a better community.
         </h2>
         <p className=  "text-center text-gray-500">One meal at a time, one smile at a time</p>

@@ -25,17 +25,17 @@ const MyFoodRequest = () => {
     );
   }
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
+    <div className="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 my-6">
       {foods.map((food) => (
-        <div key={food?._id} className="card bg-base-100 w-96 shadow-xl">
-          <figure className="px-10 pt-10">
+        <div key={food?._id} className="card glass bg-base-100 w-full shadow-xl">
+          <figure className="w-full">
             <img
               src={food.foodImage}
               alt="Shoes"
-              className="rounded-xl h-[300px] w-[400px] bg-cover"
+              className="rounded-xl  bg-cover"
             />
           </figure>
-          <div className="card-body items-center text-center">
+          <div className="card-body p-2 items-center text-center w-full">
             <h2 className="card-title text-black font-medium">
               {" "}
               Requested By: <span className="text-red-500">{food.name}</span>

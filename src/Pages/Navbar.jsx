@@ -6,7 +6,7 @@ const Navbar = () => {
   const { signOutUser, user } = useContext(AuthContext);
 
   return (
-    <div className="navbar sticky items-center top-0 z-40 flex-col md:flex-row text-black bg-red-400 px-5">
+    <div className="navbar sticky items-center top-0 z-40 flex-col md:flex-row py-[2px] text-black bg-red-400 px-5">
       <div className="flex-1">
         <Link to="/" className="btn bg-transparent btn-ghost text-2xl">
           PlateShare

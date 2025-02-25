@@ -26,10 +26,10 @@ const Banner = () => {
       
     >
       <SwiperSlide>
-        <div className="card  image-full h-[400px] w-full shadow-xl">
+        <div className="card rounded-sm image-full h-[400px] w-full ">
           <figure>
             <img
-            className="w-full bg-cover"
+            className="w-full bg-cover bg-opacity-50"
               src="https://i.ibb.co.com/2cp4WDD/pita-stuffed-with-chicken-tomato-lettuce.jpg"
               alt="food"
             />

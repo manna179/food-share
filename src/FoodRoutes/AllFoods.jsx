@@ -30,9 +30,9 @@ const AllFoods = () => {
   return (
     <div className="flex flex-col  mb-8">
       <h2 className="text-2xl font-bold mb-4 mt-4"> All Foods: ({foods.length})</h2>
-     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4  gap-4">
      {foods.map((food) => (
-        <div key={food._id} className="card glass w-full  ">
+        <div key={food._id} className="card glass w-full p-2 rounded-sm ">
           <figure>
             <img
               className=" rounded-br-md rounded-bl-md"

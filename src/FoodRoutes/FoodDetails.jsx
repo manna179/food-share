@@ -97,24 +97,24 @@ const FoodDetails = () => {
                   Food Name:{" "}
                   <span className="text-red-500"> {food.foodName}</span>
                 </h2>
-                <p className="text-black font-medium">
+                <p className=" font-medium">
                   Quantity :{" "}
                   <span className="text-red-500"> {food.foodQuantity}</span>
                 </p>
-                <p className="text-black font-medium">
+                <p className="font-medium">
                   Expired Date:{" "}
                   <span className="text-red-500"> {food.expiredDate}</span>
                 </p>
-                <p className="text-black font-medium">
+                <p className=" font-medium">
                   Donator Name:{" "}
                   <span className="text-red-500">{food.name}</span>
                 </p>
-                <p className="text-black font-medium">
+                <p className=" font-medium">
                   Food Status :{" "}
                   <span className="text-red-500">{food.status}</span>
                 </p>
                
-                <label className="block mt-3 text-black font-medium" htmlFor="Note">
+                <label className="block mt-3  font-medium" htmlFor="Note">
                   Additional Note:
                 </label>
                 <input
